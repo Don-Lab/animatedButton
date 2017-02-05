@@ -1,0 +1,93 @@
+<DOCTYPE! html>
+<head>
+  <title>Animated Button Text</title>
+</head>
+<body>
+  <div class="card">
+    <div class="cardH">
+      <h1>Button Text</h1>
+    </div>
+    <p><button class="btn" style="vertical-align: middle"><span>Button </span></button></p>
+  </div>
+  <!--The vertical-align property is used for inline elements. It is similar to the align property-->
+
+  <style>
+  /* Important to know
+
+    -transition syntax
+      transition: property duration timing-function delay|initial|inherit;
+
+        property: name of the CSS property to effect (width, height, all, ect)
+        duration: how long transition will take to finish
+        timing-function: the timing curve set for the transition (ease, ease-in, ease-in-out, linear, ect)
+
+        delay: how long before transition runs
+        initial: sets the property to defaut
+        inherit: takes properties from parent element
+
+      The two things that need to be specified is the CSS property to effect and duration:
+      transition: width 4s, height 4s ease-in-out;
+
+      Specify the tranition property in the code for the element (not where it is active like :hover or :after)
+  */
+
+  /*code for the card*/
+    .card {
+      width: 300px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      text-align: center; /*good for design*/
+      margin: 50px; /*to move off the side*/
+      font-family: arial;
+    }
+    .cardH {
+      font-size: 130%;
+      background-color: #ccc;
+      padding: 10px;
+    }
+    .card p {
+      padding: 10px
+    }
+
+  /*code for the button*/
+    .btn { /*This is code for the design of the button*/
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #000;
+      border: none;
+      color: #eee;
+      font-size: 28px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.5s; /*transition specified for all properties with a duration of 0.5 seconds*/
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    /*the next two classes are for the deisgn of the arrows*/
+    .btn span {
+      cursor: pointer;
+      display: inline-block; /*so the arrows appear on the same level as the text in the button*/
+      position: relative;
+      transition: all 0.5s; /*transition will effect all properties of the span element for a 0.5 second duration*/
+    }
+    .btn span:after { /*after the :hover of the .btn class*/
+      content: "\00bb"; /*specify the content in the CSS so it will not show in the HTML*/
+      position: absolute; /*So you can specify where the span element will be*/
+      opacity: 0;  /*hides the arrows*/
+      top: 0; /*places the span tag on the same level as the text in the button*/
+      right: -20px; /*pushes to the right*/
+      transition: all 0.5s; /*transition specified for all properties to have the arrows start to appear on the right side of the text in the button*/
+      /*place the transition property here because :after is not the trigger for the transition to take place*/
+    }
+
+    /*code to take place when transition is activated*/
+    .btn:hover span { /*when .btn is hovered, add a padding right to the span tag*/
+      padding-right: 25px; /*pushes all elements 25 pixels to the left */
+    }
+    .btn:hover span:after { /*when .btn is hovered, change span:after to have an opacity of 1 and a right of 0*/
+      opacity: 1; /*so the span tag will show*/
+      right: 0; /*right: 0 allows the span tag to be affected by the text-align: center; property*/
+    }
+  </style>
+</body>
+</html>
